@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create ZIP File using Python</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f3;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        pre {
+            background: #1e1e1e;
+            color: #e6e6e6;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        ul {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🐍 Create ZIP File Using Python</h1>
+<h2>Folder Compression Program</h2>
+
+<div class="container">
+
+<h3>📌 Objective</h3>
+<p>
+To create a ZIP file from a given folder using Python's built-in modules.
+</p>
+
+<h3>📚 Modules Used</h3>
+<ul>
+    <li><b>zipfile</b> – to create ZIP files</li>
+    <li><b>os</b> – to traverse directories</li>
+</ul>
+
+<h3>💻 Python Program</h3>
+
+<pre>
+import zipfile
+import os
+
+def create_zip(folder_path, zip_filename):
+
+    # Create a Zip file
+    with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, dirs, files in os.walk(folder_path):
+            for file in files:
+                file_path = os.path.join(root, file)
+
+                # Add file to zip with relative path
+                arcname = os.path.relpath(file_path, folder_path)
+                zipf.write(file_path, arcname)
+
+    print(f"ZIP file '{zip_filename}' created successfully!")
+
+
+# Example usage
+folder_to_zip = "my_folder"
+zip_file_name = "my_folder.zip"
+
+create_zip(folder_to_zip, zip_file_name)
+</pre>
+
+<h3>✅ Output</h3>
+<pre>
+ZIP file 'my_folder.zip' created successfully!
+</pre>
+
+<h3>📝 Note</h3>
+<p>
+Make sure the folder path exists before running the program.
+</p>
+
+</div>
+
+</body>
+</html>
